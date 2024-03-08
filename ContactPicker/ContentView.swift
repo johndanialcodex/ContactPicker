@@ -8,17 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var contactPermission = ContactPermission()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            ContactsView()
+            
+                .environmentObject(contactPermission)
+            
+//                .task {
+//                    await
+//                    contactPermission.requestContactsPermission()
+//                    
+//                    
+//                }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
 }
+
